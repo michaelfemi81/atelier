@@ -380,6 +380,16 @@ p {
   font-size: 14px;
 }
 
+.shop-source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 800;
+}
+
 .feature-band {
   background: var(--charcoal);
   color: #fff;

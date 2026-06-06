@@ -14,6 +14,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  if (!host.endsWith(".atelierlane.com")) {
+    return NextResponse.next();
+  }
+
   const shopSlug = host.replace(".atelierlane.com", "").split(".")[0];
 
   if (!shopSlug || shopSlug === "www") {

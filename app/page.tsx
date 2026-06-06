@@ -22,12 +22,11 @@ import {
   productSlug,
   readJsonStorage,
   readStoredProducts,
-  recommendationsFor,
   StoreProduct,
   wishlistStorageKey,
   writeJsonStorage
 } from "@/lib/shop";
-import { productsForActiveOwners, readShopOwners } from "@/lib/marketplace";
+import { productsForActiveOwners, readShopOwners, recommendedAcrossShops } from "@/lib/marketplace";
 
 export default function StorefrontPage() {
   const [displayProducts, setDisplayProducts] = useState<StoreProduct[]>(catalogProducts);
@@ -62,9 +61,7 @@ export default function StorefrontPage() {
     return categoryMatch && searchMatch;
   });
 
-  const recommendedProducts = displayProducts.length
-    ? recommendationsFor(displayProducts[0], displayProducts)
-    : [];
+  const recommendedProducts = recommendedAcrossShops(displayProducts);
   const cartTotal = cart.reduce((total, product) => total + priceNumber(product.price), 0);
 
   function submitSearch() {
@@ -252,8 +249,8 @@ export default function StorefrontPage() {
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <h2>Recommended for you</h2>
-            <p>More pieces that match the current edit, ready for product discovery.</p>
+            <h2>AI recommended for you</h2>
+            <p>Product picks from different active shops, with a quick path into each owner’s full storefront.</p>
           </div>
           <div className="product-grid">
             {recommendedProducts.map((product) => (
@@ -270,6 +267,11 @@ export default function StorefrontPage() {
                     <a href={`/product/${productSlug(product)}`}>{product.name}</a>
                     <span>{product.price}</span>
                   </div>
+                  {product.shopSlug ? (
+                    <a className="shop-source-link" href={`/shops/${product.shopSlug}`}>
+                      From {product.shopName || "owner shop"} <ArrowRight size={15} />
+                    </a>
+                  ) : null}
                   <button className="secondary-button" onClick={() => addToBag(product)}>
                     <ShoppingBag size={17} />
                     Add to bag

@@ -97,6 +97,66 @@ export const catalogProducts: StoreProduct[] = [
     colors: "Stone, Cocoa",
     description: "A matching knit set with a soft handfeel, built for travel days and weekends.",
     image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    name: "Pearl Mini Bag",
+    price: "$64",
+    category: "Accessories",
+    ownerId: "owner-kemi",
+    shopName: "Kemi Studio",
+    shopSlug: "kemi-studio",
+    meta: "Ivory, Gold",
+    badge: "AI pick",
+    stock: "18 in stock",
+    sizes: "One size",
+    colors: "Ivory, Gold",
+    description: "A compact beaded bag that sharpens evening looks and soft tailoring.",
+    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    name: "Monochrome Runner",
+    price: "$118",
+    category: "Shoes",
+    ownerId: "owner-noah",
+    shopName: "Noah Atelier",
+    shopSlug: "noah-atelier",
+    meta: "Unisex",
+    badge: "Trending",
+    stock: "21 in stock",
+    sizes: "38, 39, 40, 41, 42, 43",
+    colors: "White, Black",
+    description: "A clean everyday sneaker with cushioned support and minimal contrast panels.",
+    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    name: "Cropped Utility Jacket",
+    price: "$82",
+    category: "Women",
+    ownerId: "owner-ella",
+    shopName: "Ella Row",
+    shopSlug: "ella-row",
+    meta: "Olive, Sand",
+    badge: "Recommended",
+    stock: "14 in stock",
+    sizes: "XS, S, M, L",
+    colors: "Olive, Sand",
+    description: "A cropped utility layer with soft structure, waist tabs, and roomy pockets.",
+    image: "https://images.unsplash.com/photo-1520975954732-35dd22299614?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    name: "Leather Slide Sandal",
+    price: "$72",
+    category: "Shoes",
+    ownerId: "owner-kemi",
+    shopName: "Kemi Studio",
+    shopSlug: "kemi-studio",
+    meta: "Tan leather",
+    badge: "Shop pick",
+    stock: "25 in stock",
+    sizes: "37, 38, 39, 40, 41",
+    colors: "Tan, Black",
+    description: "A pared-back leather slide built for warm-weather errands and resort styling.",
+    image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=80"
   }
 ];
 
@@ -133,7 +193,10 @@ export function readStoredProducts() {
 
   try {
     const parsedProducts = JSON.parse(savedProducts) as StoreProduct[];
-    return parsedProducts.map(savedProductMeta);
+    const savedNames = new Set(parsedProducts.map((product) => product.name));
+    const missingCatalogProducts = catalogProducts.filter((product) => !savedNames.has(product.name));
+
+    return [...parsedProducts, ...missingCatalogProducts].map(savedProductMeta);
   } catch {
     window.localStorage.removeItem(productStorageKey);
     return catalogProducts;
