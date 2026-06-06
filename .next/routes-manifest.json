@@ -26,6 +26,14 @@
         "nxtPslug": "nxtPslug"
       },
       "namedRegex": "^/product/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/shops/[slug]",
+      "regex": "^/shops/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/shops/(?<nxtPslug>[^/]+?)(?:/)?$"
     }
   ],
   "staticRoutes": [
@@ -66,10 +74,22 @@
       "namedRegex": "^/admin/orders(?:/)?$"
     },
     {
+      "page": "/admin/owners",
+      "regex": "^/admin/owners(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/owners(?:/)?$"
+    },
+    {
       "page": "/admin/products",
       "regex": "^/admin/products(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/admin/products(?:/)?$"
+    },
+    {
+      "page": "/admin/wallet",
+      "regex": "^/admin/wallet(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/wallet(?:/)?$"
     },
     {
       "page": "/checkout",
@@ -82,6 +102,12 @@
       "regex": "^/collections(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/collections(?:/)?$"
+    },
+    {
+      "page": "/owner",
+      "regex": "^/owner(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/owner(?:/)?$"
     },
     {
       "page": "/search",

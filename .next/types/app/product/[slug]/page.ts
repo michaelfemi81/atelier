@@ -1,4 +1,4 @@
-// File: /Users/jyroappmichael/Documents/Codex/2026-04-30/research-current-options-for-a-buying/app/product/[slug]/page.tsx
+// File: /Users/jyroappmichael/Documents/GitHub/ AtelierLane/app/product/[slug]/page.tsx
 import * as entry from '../../../../../app/product/[slug]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

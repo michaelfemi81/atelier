@@ -13,6 +13,7 @@ import {
   wishlistStorageKey,
   writeJsonStorage
 } from "@/lib/shop";
+import { productsForActiveOwners, readShopOwners } from "@/lib/marketplace";
 
 export default function ProductPage() {
   const params = useParams<{ slug: string }>();
@@ -24,7 +25,7 @@ export default function ProductPage() {
   const [notice, setNotice] = useState("");
 
   useEffect(() => {
-    setProducts(readStoredProducts());
+    setProducts(productsForActiveOwners(readStoredProducts(), readShopOwners()));
     setCart(readJsonStorage<StoreProduct[]>(cartStorageKey, []));
     setWishlist(readJsonStorage<string[]>(wishlistStorageKey, []));
     setLoaded(true);
@@ -127,6 +128,7 @@ export default function ProductPage() {
           <div className="detail-price">{product.price}</div>
           <p>{product.description || "A polished wardrobe piece selected for everyday styling."}</p>
           <div className="detail-meta">
+            {product.shopSlug ? <a href={`/shops/${product.shopSlug}`}>{product.shopName || "Owner shop"}</a> : null}
             <span>{product.colors || product.meta}</span>
             <span>{product.stock || "In stock"}</span>
           </div>

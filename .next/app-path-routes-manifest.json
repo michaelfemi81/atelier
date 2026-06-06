@@ -1,15 +1,19 @@
 {
   "/_not-found/page": "/_not-found",
   "/admin/categories/page": "/admin/categories",
+  "/admin/owners/page": "/admin/owners",
   "/admin/inventory/page": "/admin/inventory",
-  "/admin/page": "/admin",
   "/admin/orders/page": "/admin/orders",
   "/admin/products/page": "/admin/products",
+  "/admin/page": "/admin",
+  "/admin/wallet/page": "/admin/wallet",
   "/collections/page": "/collections",
-  "/page": "/",
   "/checkout/page": "/checkout",
-  "/search/page": "/search",
+  "/owner/page": "/owner",
+  "/page": "/",
   "/product/[slug]/page": "/product/[slug]",
+  "/search/page": "/search",
   "/service/page": "/service",
-  "/shop/page": "/shop"
+  "/shop/page": "/shop",
+  "/shops/[slug]/page": "/shops/[slug]"
 }

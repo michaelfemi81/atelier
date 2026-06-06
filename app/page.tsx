@@ -27,6 +27,7 @@ import {
   wishlistStorageKey,
   writeJsonStorage
 } from "@/lib/shop";
+import { productsForActiveOwners, readShopOwners } from "@/lib/marketplace";
 
 export default function StorefrontPage() {
   const [displayProducts, setDisplayProducts] = useState<StoreProduct[]>(catalogProducts);
@@ -39,7 +40,7 @@ export default function StorefrontPage() {
   const [notice, setNotice] = useState("");
 
   useEffect(() => {
-    setDisplayProducts(readStoredProducts());
+    setDisplayProducts(productsForActiveOwners(readStoredProducts(), readShopOwners()));
     setCart(readJsonStorage<StoreProduct[]>(cartStorageKey, []));
     setWishlist(readJsonStorage<string[]>(wishlistStorageKey, []));
   }, []);

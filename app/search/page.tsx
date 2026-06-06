@@ -12,6 +12,7 @@ import {
   wishlistStorageKey,
   writeJsonStorage
 } from "@/lib/shop";
+import { productsForActiveOwners, readShopOwners } from "@/lib/marketplace";
 
 export default function SearchPage() {
   const [products, setProducts] = useState<StoreProduct[]>([]);
@@ -22,7 +23,7 @@ export default function SearchPage() {
   const [notice, setNotice] = useState("");
 
   useEffect(() => {
-    setProducts(readStoredProducts());
+    setProducts(productsForActiveOwners(readStoredProducts(), readShopOwners()));
     setCart(readJsonStorage<StoreProduct[]>(cartStorageKey, []));
     setWishlist(readJsonStorage<string[]>(wishlistStorageKey, []));
     setQuery(new URLSearchParams(window.location.search).get("q") || "");

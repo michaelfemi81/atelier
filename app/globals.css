@@ -531,6 +531,7 @@ p {
 .admin-toolbar {
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
   margin-bottom: 18px;
 }
 
@@ -642,6 +643,24 @@ p {
   border-radius: 8px;
   background: #fff;
   padding: 10px;
+}
+
+.owner-row {
+  display: grid;
+  grid-template-columns: 46px minmax(140px, 0.8fr) minmax(180px, 1fr) auto auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+}
+
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
 }
 
 .status-pill {
@@ -805,6 +824,25 @@ p {
   padding: 54px 0 24px;
 }
 
+.owner-entry-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.owner-entry-hero p {
+  max-width: 680px;
+  line-height: 1.7;
+}
+
+.owner-entry-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.7fr);
+  gap: 18px;
+  align-items: start;
+}
+
 .page-hero h1 {
   margin-bottom: 18px;
   font-size: clamp(38px, 6vw, 68px);
@@ -889,6 +927,54 @@ p {
   display: grid;
   gap: 8px;
   color: var(--muted);
+}
+
+.detail-meta a {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.shop-hero {
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+}
+
+.shop-hero-inner {
+  display: grid;
+  align-content: end;
+  min-height: 540px;
+  padding: 40px 0;
+}
+
+.shop-hero .back-link,
+.shop-hero .eyebrow {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.shop-hero h1 {
+  max-width: 780px;
+  margin: 0 0 18px;
+  font-size: clamp(44px, 7vw, 86px);
+  line-height: 0.96;
+}
+
+.shop-hero p {
+  max-width: 640px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.shop-domain {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  padding: 9px 12px;
+  font-weight: 800;
 }
 
 .promise-row span {
@@ -1300,6 +1386,7 @@ p {
   .hero,
   .admin-layout,
   .admin-grid,
+  .owner-entry-grid,
   .product-detail,
   .checkout-layout,
   .service-hero-inner,
@@ -1341,6 +1428,10 @@ p {
     grid-template-columns: 46px minmax(0, 1fr);
   }
 
+  .owner-row {
+    grid-template-columns: 46px minmax(0, 1fr);
+  }
+
   .sidebar {
     position: static;
   }
@@ -1364,7 +1455,8 @@ p {
   }
 
   .section-head,
-  .admin-topbar {
+  .admin-topbar,
+  .owner-entry-hero {
     align-items: flex-start;
     flex-direction: column;
   }

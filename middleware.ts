@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const rootHosts = new Set(["atelierlane.com", "www.atelierlane.com", "localhost:3000", "127.0.0.1:3000"]);
+const rootHosts = new Set(["atelierlane.com", "www.atelierlane.com"]);
 
 export function middleware(request: NextRequest) {
   const host = request.headers.get("host") || "";
@@ -10,7 +10,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (rootHosts.has(host)) {
+  if (rootHosts.has(host) || host.startsWith("localhost") || host.startsWith("127.0.0.1")) {
     return NextResponse.next();
   }
 

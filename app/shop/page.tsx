@@ -13,6 +13,7 @@ import {
   wishlistStorageKey,
   writeJsonStorage
 } from "@/lib/shop";
+import { productsForActiveOwners, readShopOwners } from "@/lib/marketplace";
 
 export default function ShopPage() {
   const [products, setProducts] = useState<StoreProduct[]>(catalogProducts);
@@ -25,7 +26,7 @@ export default function ShopPage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
 
-    setProducts(readStoredProducts());
+    setProducts(productsForActiveOwners(readStoredProducts(), readShopOwners()));
     setCart(readJsonStorage<StoreProduct[]>(cartStorageKey, []));
     setWishlist(readJsonStorage<string[]>(wishlistStorageKey, []));
     setCategory(params.get("category") || "All");
